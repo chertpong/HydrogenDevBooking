@@ -68,3 +68,34 @@
     width:120px;
     margin: 3px !important;
 }
+
+/*Booking*/
+.booking.opened {
+    color: #388E3C;
+}
+.booking.closed {
+    color: #F44336;
+}
+
+.hint {
+    right: 2px;
+    left: auto;
+    /* Position the hint */
+    position: absolute;
+    left: 2px;
+    right: auto;
+    bottom: 7px;
+    /* Copy styles from ng-messages */
+    font-size: 12px;
+    line-height: 14px;
+    transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+    /* Set our own color */
+    color: grey;
+}
+.booking-status{
+    margin: 10px auto;
+}
+.booking-progress{
+    margin: 10px auto;
+}
+

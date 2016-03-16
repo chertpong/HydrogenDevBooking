@@ -1,0 +1,67 @@
+<div layout="row" layout-xs="column" layout-sm="column" layout-align="center center">
+    <div>
+        <h3>Enrollment status</h3>
+        <strong>Minimum required to open course : {{minimumEnrollment}}</strong> <br>
+        <strong>Current enrolled : {{enrollment}}</strong>
+        <md-progress-linear md-mode="determinate" class="booking-progress" value="{{(enrollment / minimumEnrollment) * 100}}"></md-progress-linear>
+        <span>
+            Status :
+            <i class="fa fa-power-off fa-2x booking booking-status" ng-class="{ opened : courseIsOpen, closed: !courseIsOpen }"></i>
+            <md-tooltip md-direction="bottom">
+                <div ng-if="courseIsOpen">
+                    Course is now opened
+                </div>
+                <div ng-if="!courseIsOpen">
+                    Course need {{minimumEnrollment - enrollment}} more people in order to be open
+                </div>
+            </md-tooltip>
+        </span>
+    </div>
+</div>
+<md-content layout-padding>
+    <form name="userForm">
+        <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">
+            <div flex-gt-sm="80">
+                <h4>Enroll now!</h4>
+            </div>
+        </div>
+        <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Name</label>
+                <input md-maxlength="30" required name="name" ng-model="user.name" />
+                <div class="hint" ng-if="showHints">Tell us what is your name or nickname</div>
+                <div ng-messages="userForm.name.$error" ng-if="!showHints">
+                    <div ng-message="required">Name is required.</div>
+                    <div ng-message="md-maxlength">The name has to be less than 30 characters long.</div>
+                </div>
+            </md-input-container>
+            <div flex="5" hide-xs hide-sm>
+                <!-- Spacer //-->
+            </div>
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Facebook name or id</label>
+                <input name="facebook" ng-model="user.facebook" required />
+                <div class="hint" ng-if="showHints">Example - John Denuvo or facebook.com/john.denuvo</div>
+                <div ng-messages="userForm.social.$error" ng-if="!showHints">
+                    <div ng-message="pattern">Facebook name is required</div>
+                </div>
+            </md-input-container>
+        </div>
+        <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Phone Number</label>
+                <input name="phone" ng-model="user.phone" required ng-pattern="/^[0-9]{10}$/" />
+                <div class="hint" ng-show="showHints">example - 0991113333</div>
+                <div ng-messages="userForm.phone.$error" ng-hide="showHints">
+                    <div ng-message="pattern">Please enter a valid phone number.</div>
+                </div>
+            </md-input-container>
+            <div flex="75" hide-xs hide-sm>
+                <!-- Spacer //-->
+            </div>
+        </div>
+        <div layout="row" layout-align="center center">
+            <md-button class="md-primary md-raised">Enroll now</md-button>
+        </div>
+    </form>
+</md-content>

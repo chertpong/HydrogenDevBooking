@@ -4,7 +4,8 @@
 angular.module('myApp', [
   'ui.router',
   'ngMaterial',
-  'courseControllers'
+  'courseControllers',
+  'bookingControllers'
 ]).
 config([
     '$stateProvider','$urlRouterProvider','$mdThemingProvider',
