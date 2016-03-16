@@ -8,7 +8,7 @@ module.exports = function (Model){
             .find({})
             .exec()
             .then(data => {
-                return req.status(200).json(data);
+                return res.status(200).json(data);
             })
             .catch(err => {
                 next(err);
@@ -20,7 +20,7 @@ module.exports = function (Model){
             .findOne({_id:req.params.id})
             .exec()
             .then(data => {
-                return req.status(200).json(data);
+                return res.status(200).json(data);
             })
             .catch(err => {
                 next(err);
@@ -31,7 +31,7 @@ module.exports = function (Model){
         Model
             .create(req.body)
             .then(data => {
-                return req.status(201).json(data);
+                return res.status(201).json(data);
             })
             .catch(err => {
                 next(err);
@@ -66,10 +66,12 @@ module.exports = function (Model){
                 if(data!=null)
                     return res.status(204).json({message:'removed successfully'});
                 else
-                    return req.json(data); // never be reached
+                    return res.json(data); // never be reached
             })
             .catch(err => {
                 next(err);
             })
     });
+
+    return router;
 };
