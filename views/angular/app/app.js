@@ -3,7 +3,8 @@
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
   'ui.router',
-  'ngMaterial'
+  'ngMaterial',
+  'courseControllers'
 ]).
 config([
     '$stateProvider','$urlRouterProvider','$mdThemingProvider',
@@ -22,7 +23,8 @@ config([
                         controller: 'sidebarController'
                     },
                     content : {
-
+                        templateUrl: 'templates/courses/index.html',
+                        controller: 'courseController'
                     }
                 }
             })
@@ -38,7 +40,25 @@ config([
                         controller: 'sidebarController'
                     },
                     content : {
-
+                        templateUrl: 'templates/courses/index.html',
+                        controller: 'courseController'
+                    }
+                }
+            })
+            .state('booking', {
+                url: '/booking',
+                views: {
+                    navbar: {
+                        templateUrl: 'templates/navbar.html',
+                        controller: 'navbarController'
+                    },
+                    sidebar: {
+                        templateUrl: 'templates/sidebar.html',
+                        controller: 'sidebarController'
+                    },
+                    content : {
+                        templateUrl: 'templates/booking/index.html',
+                        controller: 'bookingController'
                     }
                 }
             }
@@ -84,7 +104,7 @@ config([
     }
 })
 .controller('sidebarController',function($scope, $timeout, $mdSidenav, $log){
-    $scope.close = function () {
+    $scope.close = function (){
         $mdSidenav('left-sidebar').close()
             .then(function () {
                 $log.debug("close sidebar is done");

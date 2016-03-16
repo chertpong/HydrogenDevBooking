@@ -1,0 +1,39 @@
+<md-content class="md-padding" layout-xs="column" layout="row">
+    <div flex-xs flex-gt-xs="50" layout="column">
+        <md-card class="course" ng-repeat="course in courses" >
+            <md-card-title-media>
+                <div class="md-media-sm">
+                    <img ng-src="{{course.thumbnail}}" class=" card-media thumbnail">
+                </div>
+            </md-card-title-media>
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{course.name}}</span>
+                </md-card-title-text>
+
+            </md-card-title>
+            <md-card-content>
+                <p>
+                    {{course.description}}
+                </p>
+            </md-card-content>
+            <div layout="row">
+                <div layout="column">
+                    <md-chips ng-model="course.tags" readonly="true"></md-chips>
+                </div>
+                <md-card-actions layout="column" class="card-btn-list">
+                    <!--<md-card-icon-actions>-->
+                    <!--<md-button class="md-icon-button" aria-label="Share">-->
+                    <!--<i class="fa fa-share-alt"></i>-->
+                    <!--</md-button>-->
+                    <!--</md-card-icon-actions>-->
+                    <md-button md-ripple-size="full" class="md-raised card-btn-button" >More details</md-button>
+                    <md-button md-ripple-size="full" class="md-primary md-raised card-btn-button">Book now</md-button>
+                </md-card-actions>
+            </div>
+        </md-card>
+    </div>
+    <div flex-xs flex-gt-xs="50" layout="column">
+       <!--TODO: edit this when has more than one course-->
+    </div>
+</md-content>

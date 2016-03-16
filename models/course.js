@@ -8,9 +8,7 @@ var courseSchema = new Schema({
     description :{type:String},
     thumbnail   :{type:String},
     tags        :[
-        {
-            name:{type:String}
-        }
+        {type:String}
     ]
 },
     {timestamps: true}
