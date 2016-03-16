@@ -1,4 +1,5 @@
 var express = require('express');
+var serverConfig = require('./config');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -41,7 +42,7 @@ app.use(function(req, res, next) {
 
 // development error handler
 // will print stacktrace
-if (app.get('env') === 'development') {
+if (serverConfig.server.mode === 'Dev') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
