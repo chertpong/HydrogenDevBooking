@@ -6,8 +6,9 @@ angular.module('myApp', [
   'ngMaterial',
   'courseControllers',
   'bookingControllers'
-]).
-config([
+])
+.constant('BASE_URL','http://localhost')
+.config([
     '$stateProvider','$urlRouterProvider','$mdThemingProvider',
     function($stateProvider,$urlRouterProvider,$mdThemingProvider) {
         $urlRouterProvider.otherwise('/');
@@ -59,6 +60,23 @@ config([
                     },
                     content : {
                         templateUrl: 'templates/booking/index.html',
+                        controller: 'bookingController'
+                    }
+                }
+            })
+            .state('login', {
+                url: '/auth/login',
+                views: {
+                    navbar: {
+                        templateUrl: 'templates/navbar.html',
+                        controller: 'navbarController'
+                    },
+                    sidebar: {
+                        templateUrl: 'templates/sidebar.html',
+                        controller: 'sidebarController'
+                    },
+                    content : {
+                        templateUrl: 'templates/login.html',
                         controller: 'bookingController'
                     }
                 }
