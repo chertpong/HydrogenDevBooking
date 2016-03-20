@@ -1,9 +1,7 @@
-var express = require('express');
-var router = express.Router();
 var httpError = require('./../../util/errors/http-error');
 
-module.exports = function (Model){
-    router.get('/',(req,res,next)=>{
+module.exports.getAll = (Model) => {
+    return (req,res,next)=>{
         Model
             .find({})
             .exec()
@@ -11,11 +9,14 @@ module.exports = function (Model){
                 return res.status(200).json(data);
             })
             .catch(err => {
-                next(err);
-            })
-    });
+                return next(err);
+            });
 
-    router.get('/:id',(req,res,next)=>{
+    };
+};
+
+module.exports.getById = (Model) => {
+    return (req,res,next)=>{
         Model
             .findOne({_id:req.params.id})
             .exec()
@@ -23,22 +24,26 @@ module.exports = function (Model){
                 return res.status(200).json(data);
             })
             .catch(err => {
-                next(err);
+                return next(err);
             })
-    });
+    };
+};
 
-    router.post('/',(req,res,next)=>{
+module.exports.create = (Model) => {
+    return (req,res,next)=>{
         Model
             .create(req.body)
             .then(data => {
                 return res.status(201).json(data);
             })
             .catch(err => {
-                next(err);
+                return next(err);
             })
-    });
+    };
+};
 
-    router.put('/:id',(req,res,next)=>{
+module.exports.update = (Model) => {
+    return (req,res,next)=>{
         Model
             .findOne({_id:req.params.id})
             .then(data => {
@@ -55,11 +60,13 @@ module.exports = function (Model){
                     })
             })
             .catch(err => {
-                next(err);
+                return next(err);
             })
-    });
+    };
+};
 
-    router.delete('/:id',(req,res,next)=>{
+module.exports.delete = (Model) => {
+    return (req,res,next)=>{
         Model
             .findOneAndRemove({_id:req.params.id})
             .then(data => {
@@ -69,9 +76,7 @@ module.exports = function (Model){
                     return res.json(data); // never be reached
             })
             .catch(err => {
-                next(err);
+                return next(err);
             })
-    });
-
-    return router;
+    };
 };

@@ -8,7 +8,8 @@ router.get('/',function(req,res,next){
 
 });
 
-router.use('/bookings',require('./bookings'));
-router.use('/courses',require('./courses'));
+router.use('/api/bookings',require('./bookings'));
+router.use('/api/courses', require('./courses')());
+
 
 module.exports = router;
