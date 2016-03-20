@@ -7,7 +7,7 @@ angular.module('myApp', [
   'courseControllers',
   'bookingControllers'
 ])
-.constant('BASE_URL','http://localhost')
+.constant('BASE_URL','http://localhost:3000')
 .config([
     '$stateProvider','$urlRouterProvider','$mdThemingProvider',
     function($stateProvider,$urlRouterProvider,$mdThemingProvider) {
