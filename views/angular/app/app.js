@@ -4,13 +4,20 @@
 angular.module('myApp', [
   'ui.router',
   'ngMaterial',
+  'httpConfigs',
+  'toastService',
   'courseControllers',
-  'bookingControllers'
+  'bookingControllers',
+  'authServices',
+  'authControllers'
 ])
 .constant('BASE_URL','http://localhost:3000')
 .config([
-    '$stateProvider','$urlRouterProvider','$mdThemingProvider',
-    function($stateProvider,$urlRouterProvider,$mdThemingProvider) {
+    '$stateProvider','$urlRouterProvider','$mdThemingProvider','$httpProvider',
+    function($stateProvider,$urlRouterProvider,$mdThemingProvider,$httpProvider) {
+
+        $httpProvider.interceptors.push( 'httpErrorInterceptor' );
+
         $urlRouterProvider.otherwise('/');
         $stateProvider
             .state('index', {
@@ -77,7 +84,7 @@ angular.module('myApp', [
                     },
                     content : {
                         templateUrl: 'templates/login.html',
-                        controller: 'bookingController'
+                        controller: 'loginController'
                     }
                 }
             }
@@ -129,4 +136,9 @@ angular.module('myApp', [
                 $log.debug("close sidebar is done");
             });
     };
-});
+})
+.run(['$rootScope','toast',function($rootScope,toast){
+    $rootScope.$on( 'httpError', function( event, eventData ) {
+        toast.serverError( eventData.message );
+    })
+}]);
