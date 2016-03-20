@@ -8,7 +8,7 @@ module.exports = function(){
             Course
                 .create({
                     name:'Java OOP',
-                    duration:10,
+                    duration:100,
                     price:1000,
                     description:'Best java basic course',
                     thumbnail:'https://upload.wikimedia.org/wikipedia/en/8/88/Java_logo.png',
