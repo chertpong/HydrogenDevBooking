@@ -15,8 +15,8 @@ module.exports = () => {
                     return res.status(200).json({message:'success'});
                 });
             })(req, res, next)
-        })
-        .get('/:id'     , template.getById(User));
+        });
+        // .get('/'     , template.getAll(User));
     // .post('/'       , template.create(User))
     // .put('/:id'     , template.update(User))
     // .delete('/:id'  , template.delete(User))
