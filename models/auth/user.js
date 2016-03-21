@@ -36,7 +36,7 @@ userSchema.methods.authenticate =  function(email,password){
             });
         }
         else{
-            return reject(false);
+            return resolve(false);
         }
     });
 };
