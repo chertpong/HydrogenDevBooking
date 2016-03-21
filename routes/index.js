@@ -8,8 +8,11 @@ router.get('/',function(req,res,next){
 
 });
 
-router.use('/api/bookings',require('./bookings'));
-router.use('/api/courses', require('./courses')());
 
+// API
+router.use('/api/bookings',require('./bookings')());
+router.use('/api/courses', require('./courses')());
+//Authentication
+router.use('/api/auth',require('./auth')());
 
 module.exports = router;

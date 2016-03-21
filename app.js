@@ -1,4 +1,5 @@
 var express = require('express');
+var expressSession = require('express-session');
 var serverConfig = require('./config');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -6,15 +7,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var passport = require('passport');
 
 var routes = require('./routes/index');
 //setup database
 mongoose.connect('mongodb://localhost/hydrogendev-booking');
 
 var app = express();
-
-//serve index
-app.use(express.static(path.join(__dirname,'views/angular/app')));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,6 +25,22 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(expressSession(
+    {
+      secret: serverConfig.session.secret,
+      proxy: true,
+      resave: false,
+      saveUninitialized: false
+    }
+));
+app.use(passport.initialize());
+app.use(passport.session());
+//setting passport
+require('./config/passport')(passport);
+
+
+//serve static files
+app.use(express.static(path.join(__dirname,'views/angular/app')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //set boot script
