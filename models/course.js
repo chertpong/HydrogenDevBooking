@@ -14,9 +14,6 @@ var courseSchema = new Schema({
     {timestamps: true}
 );
 
-// courseSchema.virtual('duration').get(function(){
-//
-// });
 
 function durationFormat(duration){
     return {
