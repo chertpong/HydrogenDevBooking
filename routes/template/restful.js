@@ -1,5 +1,3 @@
-var httpError = require('./../../util/errors/http-error');
-
 module.exports.getAll = (Model) => {
     return (req,res,next)=>{
         Model
@@ -21,6 +19,7 @@ module.exports.getById = (Model) => {
             .findOne({_id:req.params.id})
             .exec()
             .then(data => {
+                if(!data) return res.status(404).json({message:'Not found'});
                 return res.status(200).json(data);
             })
             .catch(err => {
@@ -48,7 +47,7 @@ module.exports.update = (Model) => {
             .findOne({_id:req.params.id})
             .then(data => {
                 if(!data)
-                    throw httpError(404,'Not found');
+                    return res.status(404).json({message:'Not found'});
                 else
                     return data;
             })
