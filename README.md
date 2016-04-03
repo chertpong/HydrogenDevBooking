@@ -1,1 +1,4 @@
 # HydrogenDevBooking
+
+## Definitions
+Course = 

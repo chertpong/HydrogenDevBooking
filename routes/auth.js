@@ -15,6 +15,10 @@ module.exports = () => {
                     return res.status(200).json({message:'success'});
                 });
             })(req, res, next)
+        })
+        .post('/logout' , (req,res,next)=>{
+            req.logout();
+            return res.status(200).json({message:'success'});
         });
         // .get('/'     , template.getAll(User));
     // .post('/'       , template.create(User))

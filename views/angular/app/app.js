@@ -13,75 +13,61 @@ angular.module('myApp', [
 ])
 .constant('BASE_URL','http://localhost:3000')
 .config([
-    '$stateProvider','$urlRouterProvider','$mdThemingProvider','$httpProvider',
-    function($stateProvider,$urlRouterProvider,$mdThemingProvider,$httpProvider) {
+    '$logProvider','$stateProvider','$urlRouterProvider','$mdThemingProvider','$httpProvider',
+    function($logProvider,$stateProvider,$urlRouterProvider,$mdThemingProvider,$httpProvider) {
+        $logProvider.debugEnabled(true);
 
         $httpProvider.interceptors.push( 'httpErrorInterceptor' );
 
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/courses');
         $stateProvider
-            .state('index', {
-                url: '/',
+            .state('root', {
+                url: '',
+                abstract: true,
                 views: {
-                    navbar: {
-                        templateUrl: 'templates/navbar.html',
-                        controller: 'navbarController'
-                    },
-                    sidebar: {
-                        templateUrl: 'templates/sidebar.html',
-                        controller: 'sidebarController'
-                    },
-                    content : {
-                        templateUrl: 'templates/courses/index.html',
-                        controller: 'courseController'
-                    }
+                  root : {
+                    template : '<div ui-view="content"></div>'
+                  },
+                  navbar: {
+                    templateUrl: 'templates/navbar.html',
+                    controller: 'navbarController'
+                  },
+                  sidebar: {
+                    templateUrl: 'templates/sidebar.html',
+                    controller: 'sidebarController'
+                  }
                 }
             })
-            .state('courses', {
+            .state('root.courses', {
                 url: '/courses',
                 views: {
-                    navbar: {
-                        templateUrl: 'templates/navbar.html',
-                        controller: 'navbarController'
-                    },
-                    sidebar: {
-                        templateUrl: 'templates/sidebar.html',
-                        controller: 'sidebarController'
-                    },
                     content : {
-                        templateUrl: 'templates/courses/index.html',
+                        templateUrl: 'templates/courses/list.html',
                         controller: 'courseController'
                     }
                 }
             })
-            .state('booking', {
+            .state('root.courses-view', {
+                url: '/courses/:id',
+                views: {
+                    content : {
+                        templateUrl: 'templates/courses/view.html',
+                        controller: 'courseViewController'
+                    }
+                }
+            })
+            .state('root.booking', {
                 url: '/booking',
                 views: {
-                    navbar: {
-                        templateUrl: 'templates/navbar.html',
-                        controller: 'navbarController'
-                    },
-                    sidebar: {
-                        templateUrl: 'templates/sidebar.html',
-                        controller: 'sidebarController'
-                    },
                     content : {
                         templateUrl: 'templates/booking/index.html',
                         controller: 'bookingController'
                     }
                 }
             })
-            .state('login', {
+            .state('root.login', {
                 url: '/auth/login',
                 views: {
-                    navbar: {
-                        templateUrl: 'templates/navbar.html',
-                        controller: 'navbarController'
-                    },
-                    sidebar: {
-                        templateUrl: 'templates/sidebar.html',
-                        controller: 'sidebarController'
-                    },
                     content : {
                         templateUrl: 'templates/login.html',
                         controller: 'loginController'
