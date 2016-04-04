@@ -1,10 +1,10 @@
 var Course = require('./../models/course');
 
-module.exports = function(){
-    Course
+module.exports = () => new Promise((resolve,reject) => {
+     Course
         .remove({})
         .then(function(data){
-            console.log('[-]' + 'Course ' + (data.result.ok ? 'success' : 'fail') );
+            console.log('[-]' + ' Course ' + (data.result.ok ? 'success' : 'fail') );
             Course
                 .create({
                     name:'Java OOP',
@@ -16,14 +16,10 @@ module.exports = function(){
                         'Java','Beginner'
                     ]}
                 )
-                .then(function(data){
-                    console.log('[+] Course: '+data.name);
+                .then(function(c){
+                  console.log('[+] Course: '+ c.name);
+                  return resolve(c);
                 })
-                .catch(function(err){
-                    throw err;
-                });
         })
-        .catch(function(err){
-            throw err;
-        });
-};
+        .catch(err => reject(err));
+});
