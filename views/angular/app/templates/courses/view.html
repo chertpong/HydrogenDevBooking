@@ -1,8 +1,26 @@
-<md-content class="md-padding" layout-xs="column" layout="row">
-    <div flex-xs flex-gt-xs="50" layout="column">
-        <div class="md-media-sm">
-            <img ng-src="{{course.thumbnail}}" class=" card-media thumbnail">
+<div layout="row" layout-align="center center">
+    <md-content class="view-course-box md-padding md-whiteframe-2dp" layout-xs="column" layout="row" >
+        <div flex-xs flex-gt-xs="50" layout="column">
+            <div class="md-media-sm">
+                <img ng-src="{{course.thumbnail}}" class="card-media thumbnail">
+            </div>
         </div>
-    </div>
-</md-content>
+        <article class="view-course-description-box" flex-xs flex-gt-xs="50" layout="column">
+            <h1>Course : {{course.name}}</h1>
+            <i class="fa fa-money fa-2x "> <span> {{course.price}} ฿ </span></i>
+            <i class="fa fa-clock-o fa-2x"> <span>Duration: {{course.duration.hour}} hour(s) {{course.duration.minute}} minute(s)</span></i>
+            <div class="view-course-description">
+                <h3>Course description</h3>
+                {{course.description}}
+            </div>
+            <div class="tags">
+                <h4>Tags</h4>
+                <md-chips class="no-shadow" ng-model="course.tags" readonly="true"></md-chips>
+            </div>
+            <div class="view-course-description-bottom" layout="row">
+                <md-button class="md-raised md-primary" flex-offset="70"> Book now </md-button>
+            </div>
+        </article>
+    </md-content>
+</div>
 

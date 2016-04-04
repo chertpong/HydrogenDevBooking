@@ -1,8 +1,8 @@
 <div layout="row" layout-xs="column" layout-sm="column" layout-align="center center">
     <div>
-        <h3>Enrollment status</h3>
+        <h3>Booking status</h3>
         <strong>Minimum required to open course : {{minimumEnrollment}}</strong> <br>
-        <strong>Current enrolled : {{enrollment}}</strong>
+        <strong>Current booked : {{enrollment}}</strong>
         <md-progress-linear md-mode="determinate" class="booking-progress" value="{{(enrollment / minimumEnrollment) * 100}}"></md-progress-linear>
         <span>
             Status :
@@ -22,7 +22,7 @@
     <form name="userForm">
         <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">
             <div flex-gt-sm="80">
-                <h4>Enroll now!</h4>
+                <h4>Book now!</h4>
             </div>
         </div>
         <div layout-gt-sm="row">
@@ -61,7 +61,7 @@
             </div>
         </div>
         <div layout="row" layout-align="center center">
-            <md-button class="md-primary md-raised">Enroll now</md-button>
+            <md-button class="md-primary md-raised">Book now</md-button>
         </div>
     </form>
 </md-content>

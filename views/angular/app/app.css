@@ -1,4 +1,20 @@
 /* app css stylesheet */
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+:lang(th) {
+    font-family: 'Kanit', sans-serif;
+}
+.fa > span {
+    font-family: 'Open Sans', sans-serif;
+}
+/* Color */
+.primary-color {
+    color: rgba(33,150,243,1);
+}
+.accent-color {
+    color :rgba(25,118,210,1);
+}
 
 .menu {
   list-style: none;
@@ -53,6 +69,13 @@
 .menu-list:hover{
     background-color: #9E9E9E;
 }
+.no-shadow {
+    box-shadow: none;
+}
+.no-shadow > * {
+    box-shadow: none !important;
+}
+/* Courses */
 
 .thumbnail{
     width: 350px;
@@ -98,10 +121,34 @@
 .booking-progress{
     margin: 10px auto;
 }
-
+/* Login */
 .login-page {
     padding-top: 25px;
 }
 .login-zone {
     padding-top: 10px;
+}
+
+/* View Courses*/
+
+.view-course-box {
+    margin-top: 50px;
+}
+.view-course-description-box {
+    width: 320px;
+    min-height: 320px;
+}
+.view-course-description-box > .fa {
+    margin: 5px 0 5px 0;
+    font-size: 20px;
+}
+.view-course-description-box > .fa-money {
+    color: green;
+}
+.view-course-description-box > .fa-clock-o {
+    color: rgba(33,150,243,1);
+}
+.view-course-description-box > .fa > span {
+    font-size: 15px;
+    color: black;
 }
